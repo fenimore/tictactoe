@@ -73,7 +73,7 @@ def ask_move():
     IndexError -- if move is below -8 or above 9
     ValueError -- if move is not an int
     """
-    move = input('    Enter Next Move (single digit): ')
+    move = input('    Claim square: ')
     try:
         if squares[int(move) - 1] is 0:  # Check for empty square
             if int(move) > 0:  # No negative numbers
