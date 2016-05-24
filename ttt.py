@@ -14,6 +14,7 @@ board_size -- the amount of squares
 squares -- the value of each square defaults empty or 0
 squares_printed -- the user input choices 1 - board_size
 squares_valid -- a list of possible valid inputs 1 - board_size
+squares_history -- a list of moves made in order
 win_dict -- a dict of winning combinations (input: combos)
 instructions -- welcome message for user
 """
@@ -25,6 +26,7 @@ board_size = 9
 squares = [0 for x in range(0, board_size)]
 squares_printed = [str(ind + 1) for ind, val in enumerate(squares)]
 squares_valid = [int(x) for x in squares_printed]
+squares_history = []
 
 win_dict = {
     '1': [(1, 2), (3, 8), (4, 8)], '2': [(4, 7), (0, 2)],
@@ -33,6 +35,8 @@ win_dict = {
     '6': [(4, 3), (2, 8)], '7': [(0, 3), (7, 8), (4, 2)],
     '8': [(6, 8), (4, 1)], '9': [(2, 5), (6, 7), (0, 4)],
     }
+    
+best_dict = {}
 
 instructions = """
 \n\n    *********\n    TicTacToe\n    *********\n\n
@@ -91,8 +95,8 @@ def make_move(move, player):
     """Take the valid move and update grid.
 
     This function updates squares, squares_printed, 
-    and squares_valid value. It then checks for a 
-    win and prints the board.
+    squares_history, and squares_valid value. 
+    It then checks for a win and prints the board.
     
     Keyword arguments:
     move -- the 1-9 coordinates the user inputs
@@ -100,6 +104,7 @@ def make_move(move, player):
     """
     squares[move - 1] = player
     squares_valid.remove(move)
+    squares_history.append(move)
     if player == 1:
         squares_printed[move-1] = 'X'
     elif player == 2:
@@ -140,6 +145,10 @@ def computer_random():
 def computer_best():  # TODO: Add decision tree
     """Place move according to three possible openings"""
     # https://en.wikipedia.org/wiki/Tic-tac-toe#Strategy
+    if squares_history[0] == 5: # Human opens in Center
+        return 1
+    else:
+        return 5
     return 0
 
 
