@@ -75,7 +75,7 @@ def ask_move():
             if int(move) > 0:  # No negative numbers
                 return int(move)
             else: 
-                return 0  # Doesn't reprint board
+                return 0  # Don't reprint board
         else:
             print_board('\n    WOOPS\n    That square is taken')
             return 0
@@ -171,7 +171,7 @@ def play_tic_tac_toe(default_order):
         print('\n    Cat\'s game (draw)\n')
 
 def play_computer(easy):
-    """Play against computer
+    """Play against computer.
     
     This function is the human vs computer
     mode. The human player goes first.
@@ -199,11 +199,11 @@ def play_computer(easy):
         else:
             print('\n    Cat\'s game (draw)\n')
     else:
-        print('hard difficulty')
+        print('hard difficulty not available yet')
 
 
 if __name__ == "__main__":
-    """Play Tic Tac Toe
+    """Play Tic Tac Toe.
     
     The main thread offers choices to the user
     for the two modes available, computer or 
@@ -226,6 +226,6 @@ if __name__ == "__main__":
         if difficulty == 'e':
             play_computer(True)
         if difficulty == 'h':
-            print('no hard mode yet')
+            play_computer(False)
     else:
         print('I don\'t understand your choice')
